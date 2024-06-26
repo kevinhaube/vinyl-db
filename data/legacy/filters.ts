@@ -6,5 +6,5 @@ export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
         .sort((a, b) =>
             (b.Acquired as Date).getTime() - (a.Acquired as Date).getTime()
         )
-        .slice(0,10)
+        .slice(0,12)
 }
