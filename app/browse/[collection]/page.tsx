@@ -5,12 +5,14 @@ import { sortRecentlyAdded } from '@/data/legacy/filters';
 import { TypedLegacyEntry } from '@/data/legacy/types';
 
 export default async function Page({ params }: { params: { collection: string } }) {
-  const supabase = useSupabase()
-  const { data } = await supabase.from("legacy-notion").select('*')
+  const sb = useSupabase()
+  const { data } = await sb.from("legacy-notion").select('*')
   const filterAlbums = (albums: TypedLegacyEntry[]) => {
     switch (params.collection) {
       case "recently-added":
         return sortRecentlyAdded(albums)
+      case "artists":
+        return albums // TODO
       default:
         return albums
     }

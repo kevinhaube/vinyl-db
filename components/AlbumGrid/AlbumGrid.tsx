@@ -2,7 +2,6 @@ import {LegacyEntry, TypedLegacyEntry} from "@/data/legacy/types";
 import {sortRecentlyAdded} from "@/data/legacy/filters";
 
 const AlbumGrid = ({ albums }: { albums: TypedLegacyEntry[] }) => {
-
     return (
         <div className="my-2 grid grid-cols-2 md:grid-cols-4 gap-2">
             {albums?.length > 0 ? (
