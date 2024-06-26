@@ -1,12 +1,11 @@
-import {LegacyEntry, TypedLegacyEntry} from "@/data/legacy/types";
-import {sortRecentlyAdded} from "@/data/legacy/filters";
+import { TypedLegacyEntry } from "@/data/legacy/types";
 
 const AlbumGrid = ({ albums }: { albums: TypedLegacyEntry[] }) => {
     return (
-        <div className="my-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="w-[96.5vw] grid grid-cols-2 md:grid-cols-4 gap-2">
             {albums?.length > 0 ? (
                 albums.map((album, index) => (
-                    <div key={index} className="aspect-square bg-gray-200 flex justify-center items-center">
+                    <div key={index} className="col-span-1 aspect-square bg-gray-200 flex justify-center items-center">
                         <img src={"/"} alt={album.Title} className="object-cover" />
                     </div>
                 ))

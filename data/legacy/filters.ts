@@ -1,4 +1,5 @@
 import {TypedLegacyEntry} from "@/data/legacy/types";
+import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
 
 export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
     return args
@@ -7,4 +8,8 @@ export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
             (b.Acquired as Date).getTime() - (a.Acquired as Date).getTime()
         )
         .slice(0,12)
+}
+
+export function sortArtists(args: TypedLegacyEntry[]) {
+    return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist");
 }

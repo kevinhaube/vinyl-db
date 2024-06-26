@@ -19,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <h1 className={"ml-2 font-black text-7xl spacing tracking-tighter"}>vinyl</h1>
+        <h1 className={"mt-6 ml-2 lg:ml-6 font-black text-7xl spacing tracking-tighter"}>vinyl</h1>
         <nav>
-          <ul className={"mt-6 ml-2"}>
+          <ul className={"mt-6 ml-2 lg:ml-6"}>
             {pageNames.map((pn, idx) => (
               <Link key={idx} href={`/browse/${pn}`}>
                 <li className={'leading-7 text-3xl'}>{pn}</li>
