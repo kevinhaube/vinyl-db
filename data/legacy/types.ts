@@ -7,6 +7,7 @@ export type LegacyCols = "Title"
     | "Purchased"
     | "Retailer"
     | "Preorder";
+
 export type LegacyEntry = {[key in LegacyCols]: string}
 
 type LegacySafeCols = Pick<LegacyEntry, "Title" | "Artist" | "Variant" | "Retailer">
