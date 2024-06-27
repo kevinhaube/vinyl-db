@@ -6,11 +6,12 @@ export type LegacyCols = "Title"
     | "Variant"
     | "Purchased"
     | "Retailer"
-    | "Preorder";
+    | "Preorder"
+    | "Artwork";
 
 export type LegacyEntry = {[key in LegacyCols]: string}
 
-type LegacySafeCols = Pick<LegacyEntry, "Title" | "Artist" | "Variant" | "Retailer">
+type LegacySafeCols = Pick<LegacyEntry, "Title" | "Artist" | "Variant" | "Retailer" | "Artwork">
 export type TypedLegacyEntry =  & LegacySafeCols & {
     Acquired: Date | null; // use with `new Date()`
     Purchased: Date | null; // use with `new Date()`

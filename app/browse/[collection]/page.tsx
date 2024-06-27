@@ -12,7 +12,7 @@ export default async function Page({ params }: { params: { collection: string } 
       case "recently-added":
         return sortRecentlyAdded(albums)
       case "artists":
-        return sortArtists(albums) // TODO
+        return sortArtists(albums)
       default:
         return albums
     }
