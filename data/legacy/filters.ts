@@ -2,7 +2,7 @@ import {TypedLegacyEntry} from "@/data/legacy/types";
 import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
 
 export const SORTED_PAGES = ["recently-added", "artists"] as const
-type LegacySortType = typeof SORTED_PAGES[number]
+export type LegacySortType = typeof SORTED_PAGES[number]
 
 export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
     return args
