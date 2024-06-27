@@ -11,5 +11,5 @@ export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
 }
 
 export function sortArtists(args: TypedLegacyEntry[]) {
-    return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist");
+    return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist", "Title");
 }
