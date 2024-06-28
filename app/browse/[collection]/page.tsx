@@ -10,8 +10,7 @@ export default async function Page({ params }: { params: { collection: LegacySor
   const sortedAlbums = sortLegacyEntries(transformLegacyTypes(...data), params.collection)
 
   return (
-    <main className="flex min-h-screen flex-col items-start my-20 mx-2 lg:mx-6">
-      <h2 className={'text-xl'}>{params.collection}</h2>
+    <main className="flex min-h-screen flex-col items-start my-8 mx-2 lg:mx-6">
       {<AlbumGrid albums={(sortedAlbums as TypedLegacyEntry[])} />}
     </main>
   );
