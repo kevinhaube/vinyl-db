@@ -1,4 +1,4 @@
-import AlbumGrid from '@/components/AlbumGrid/AlbumGrid';
+import AlbumGrid from '@/components/AlbumGrid';
 import { transformLegacyTypes } from '@/data/legacy/transforms';
 import { useSupabase } from '@/utils/supabase/useSupabase';
 import { LegacySortType, sortLegacyEntries } from '@/data/legacy/filters';
