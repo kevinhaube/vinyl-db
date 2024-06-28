@@ -10,7 +10,7 @@ function Navigation() {
   const split = pathname.split("/");
   const filter = split[split.length - 1]
   const style = {
-    color: stringToColor(filter) // name of filter
+    color: stringToColor(filter, "first") // name of filter
   }
   return (
     <ul className={"mt-6 ml-2 lg:ml-6"}>

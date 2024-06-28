@@ -1,13 +1,14 @@
-export function stringToColor(str: string, brightness: number = 50, opacity: number = 1): string {
+export function stringToColor(str: string, basis: "first" | "last" = "last", brightness: number = 50, opacity: number = 1): string {
   if (!str.trim().length) throw new Error('Invalid input string');
 
   const trimmedStr = str.trim();
-  const firstChar = trimmedStr[0].toLowerCase();
-  const charCode = firstChar.charCodeAt(0);
+  const basisKey = basis === "last" ? trimmedStr.length - 1 : 0
+  const char = trimmedStr[basisKey].toLowerCase();
+  const charCode = char.charCodeAt(0);
 
   // Generate a consistent hex color based on the first character's ASCII value
   const baseHue = (charCode - 97) * 14; // 'a' -> 0, 'b' -> 14, ..., 'z' -> 364
-  const saturation = 70; // Fixed saturation for a nice color palette
+  const saturation = 80; // Fixed saturation for a nice color palette
   const lightness = brightness; // Use the brightness parameter
 
   // Ensure opacity is between 0 and 1
