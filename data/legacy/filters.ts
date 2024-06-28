@@ -4,7 +4,7 @@ import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
 export const SORTED_PAGES = ["newest", "artist(a-z)"] as const
 export type LegacySortType = typeof SORTED_PAGES[number]
 
-export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
+function sortRecentlyAdded(args: TypedLegacyEntry[]) {
     return args
         .filter((arg) => arg.Acquired !== null)
         .sort((a, b) =>
@@ -12,7 +12,8 @@ export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
         )
 }
 
-export function sortArtists(args: TypedLegacyEntry[]) {
+/** @deprecated */
+function sortArtists(args: TypedLegacyEntry[]) {
     return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist", "Title");
 }
 
