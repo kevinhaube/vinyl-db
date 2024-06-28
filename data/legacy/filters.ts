@@ -1,7 +1,7 @@
 import {TypedLegacyEntry} from "@/data/legacy/types";
 import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
 
-export const SORTED_PAGES = ["recently-added", "artists"] as const
+export const SORTED_PAGES = ["newest", "artist(a-z)"] as const
 export type LegacySortType = typeof SORTED_PAGES[number]
 
 export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
@@ -10,19 +10,22 @@ export function sortRecentlyAdded(args: TypedLegacyEntry[]) {
         .sort((a, b) =>
             (b.Acquired as Date).getTime() - (a.Acquired as Date).getTime()
         )
-        .slice(0,12)
 }
 
 export function sortArtists(args: TypedLegacyEntry[]) {
     return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist", "Title");
 }
 
+function sortArtistsV2(args: TypedLegacyEntry[]) {
+    return args.sort((a, b) => String(a.Artist).localeCompare(String(b.Artist)))
+}
+
 export function sortLegacyEntries(args: TypedLegacyEntry[], sort: LegacySortType) {
     switch (sort) {
-        case "recently-added":
+        case "newest":
             return sortRecentlyAdded(args)
-        case "artists":
-            return sortArtists(args)
+        case "artist(a-z)":
+            return sortArtistsV2(args)
         default:
             // runtime invalid 'sort' type failure
             console.error(`sortLegacyEntries: invalid sort type ${sort} - data was returned unsorted`)

@@ -3,10 +3,10 @@ import AlbumCover from '@/components/AlbumCover';
 
 const AlbumGrid = ({ albums }: { albums: TypedLegacyEntry[] }) => {
     return (
-      <div className="w-[96.5vw] grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div className="flex flex-wrap">
           {albums?.length > 0 ? (
             albums.map((album, index) => (
-              <div key={index} className="col-span-1 aspect-square bg-gray-200 flex justify-center items-center">
+              <div key={index} className="w-1/5 bg-gray-200 flex flex-wrap justify-center items-center">
                 <AlbumCover album={album} />
               </div>
                 ))
