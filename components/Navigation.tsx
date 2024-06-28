@@ -16,7 +16,7 @@ function Navigation() {
     <ul className={"mt-6 ml-2 lg:ml-6"}>
       {SORTED_PAGES.map((pn, idx) => (
         <Link key={idx} href={`/browse/${pn}`}>
-          <li style={filter === pn ? style : {}} className={'leading-7 text-3xl '}>{pn}</li>
+          <li style={filter === pn ? style : {}} className={'leading-8 text-3xl '}>{pn}</li>
         </Link>
       ))}
     </ul>
