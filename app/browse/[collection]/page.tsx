@@ -1,11 +1,11 @@
 import AlbumGrid from '@/components/AlbumGrid';
 import { transformLegacyTypes } from '@/data/legacy/transforms';
-import { useSupabase } from '@/utils/supabase/useSupabase';
+import { createSupabaseClient } from '@/utils/supabase/createSupabaseClient';
 import { LegacySortType, sortLegacyEntries } from '@/data/legacy/filters';
 import { TypedLegacyEntry } from '@/data/legacy/types';
 
 export default async function Page({ params }: { params: { collection: LegacySortType } }) {
-  const sb = useSupabase()
+  const sb = createSupabaseClient()
   const { data } = await sb.from("legacy-notion").select('*')
   const sortedAlbums = sortLegacyEntries(transformLegacyTypes(...data), params.collection)
 
