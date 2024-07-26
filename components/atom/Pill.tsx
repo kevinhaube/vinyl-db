@@ -11,12 +11,12 @@ const Pill = ({ text, className }: { text: string, className?: string }) => {
     color: pillAccent,
   };
   return (
-    <span
+    <p
         className={`rounded-full whitespace-nowrap border-2 text-sm px-3 py-1 ${className}`}
         style={dynamicStyles}
     >
         {text}
-    </span>
+    </p>
   )
 }
 
