@@ -1,32 +1,28 @@
-import {TypedLegacyEntry} from "@/data/legacy/types";
 import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
+import { FullAlbumDetails } from '@/data/types';
 
 export const SORTED_PAGES = ["newest", "artist(a-z)", "preorders"] as const
-export type LegacySortType = typeof SORTED_PAGES[number]
+export type SortType = typeof SORTED_PAGES[number]
 
-const isAcquired = (arg: TypedLegacyEntry) => arg.Acquired
-const isPreorder = (arg: TypedLegacyEntry) => arg.Preorder
+const isAcquired = (arg: FullAlbumDetails) => arg.acquired_date
+const isPreorder = (arg: FullAlbumDetails) => arg.preordered
 const sortByTime = (aDate: Date, bDate: Date) => bDate.getTime() - aDate.getTime()
 
-function sortRecentlyAdded(args: TypedLegacyEntry[]) {
+function sortRecentlyAdded(args: FullAlbumDetails[]) {
     return args
         .filter((arg) => isAcquired(arg))
-        .sort((a, b) => sortByTime((a.Acquired as Date), (b.Acquired as Date)))
+        .sort((a, b) => sortByTime(new Date(a.acquired_date), new Date(b.acquired_date)))
 }
 
-function sortArtists(args: TypedLegacyEntry[]) {
-    return groupAndSortByProperty<TypedLegacyEntry>(args, "Artist", "Title").flat();
+function sortArtists(args: FullAlbumDetails[]) {
+    return groupAndSortByProperty<FullAlbumDetails>(args, "artist_name", "title").flat();
 }
 
-function filterPreorders(args: TypedLegacyEntry[]) {
+function filterPreorders(args: FullAlbumDetails[]) {
     return args.filter((arg) => isPreorder(arg) && !isAcquired(arg))
 }
 
-function filterShipping(args: TypedLegacyEntry[]) {
-    return args.filter((arg) => !isPreorder(arg) && !isAcquired(arg))
-}
-
-export function sortLegacyEntries(args: TypedLegacyEntry[], sort: LegacySortType) {
+export function sortLegacyEntries(args: FullAlbumDetails[], sort: SortType) {
     switch (sort) {
         case "newest":
             return sortRecentlyAdded(args)

@@ -1,7 +1,7 @@
-import { TypedLegacyEntry } from "@/data/legacy/types";
 import AlbumCover from '@/components/AlbumCover';
+import { FullAlbumDetails } from '@/data/types';
 
-const AlbumGrid = ({ albums }: { albums: TypedLegacyEntry[] }) => {
+const AlbumGrid = ({ albums }: { albums: FullAlbumDetails[] }) => {
     return (
       <div className="flex flex-wrap">
         {albums?.length > 0 ? (

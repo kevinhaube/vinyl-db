@@ -2,7 +2,7 @@ import type { GetServerSideProps, Metadata } from 'next';
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from 'next/link';
-import { SORTED_PAGES } from '@/data/legacy/filters';
+import { SORTED_PAGES } from '@/data/filters';
 import Navigation from '@/components/Navigation';
 import { stringToColor } from '@/utils/color/stringToColor';
 
