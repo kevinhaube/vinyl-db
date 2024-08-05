@@ -18,7 +18,7 @@ const getServerSideProps: GetServerSideProps = async (context) => {
 
 export const metadata: Metadata = {
   title: "some chick's vinyl collection",
-  description: "curated by: hanna",
+  description: "pov: you came over and i've talked your ear off about vinyl, so now you're handed this phone or linked to this page to find one to listen to.",
 };
 
 export default function RootLayout({
