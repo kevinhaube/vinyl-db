@@ -10,8 +10,8 @@ const sortByTime = (aDate: Date, bDate: Date) => bDate.getTime() - aDate.getTime
 
 function sortRecentlyAdded(args: FullAlbumDetails[]) {
     return args
-        .filter((arg) => isAcquired(arg))
-        .sort((a, b) => sortByTime(new Date(a.acquired_date), new Date(b.acquired_date)))
+      .filter((arg) => isAcquired(arg))
+      .sort((a, b) => sortByTime(new Date(a.acquired_date), new Date(b.acquired_date)))
 }
 
 function sortArtists(args: FullAlbumDetails[]) {
