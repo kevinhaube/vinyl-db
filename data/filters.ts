@@ -4,14 +4,14 @@ import { FullAlbumDetails } from '@/data/types';
 export const SORTED_PAGES = ["newest", "artist(a-z)", "preorders"] as const
 export type SortType = typeof SORTED_PAGES[number]
 
-const isAcquired = (arg: FullAlbumDetails) => arg.acquired_date
+const isAcquired = (arg: FullAlbumDetails) => arg.acquired_date && new Date(arg.acquired_date).getTime() <= Date.now()
 const isPreorder = (arg: FullAlbumDetails) => arg.preordered
 const sortByTime = (aDate: Date, bDate: Date) => bDate.getTime() - aDate.getTime()
 
 function sortRecentlyAdded(args: FullAlbumDetails[]) {
     return args
-        .filter((arg) => isAcquired(arg))
-        .sort((a, b) => sortByTime(new Date(a.acquired_date), new Date(b.acquired_date)))
+      .filter((arg) => isAcquired(arg))
+      .sort((a, b) => sortByTime(new Date(a.acquired_date), new Date(b.acquired_date)))
 }
 
 function sortArtists(args: FullAlbumDetails[]) {
@@ -19,7 +19,7 @@ function sortArtists(args: FullAlbumDetails[]) {
 }
 
 function filterPreorders(args: FullAlbumDetails[]) {
-    return args.filter((arg) => isPreorder(arg) && !isAcquired(arg))
+    return args.filter((arg) => isPreorder(arg) && !isAcquired(arg)).sort((a, b) => sortByTime(new Date(a.purchase_date), new Date(b.purchase_date)))
 }
 
 export function sortLegacyEntries(args: FullAlbumDetails[], sort: SortType) {
