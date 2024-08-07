@@ -4,7 +4,7 @@ import { SortType, sortLegacyEntries } from '@/data/filters';
 import { getFullList } from '@/utils/supabase/queries';
 import { FullAlbumDetails } from '@/data/types';
 
-export default async function Page({ params }: { params: { collection: SortType } }) {
+export default async function Page({ params }: { params: { collection: SortType['slug'] } }) {
   const sb = createSupabaseClient()
   const data = await getFullList(sb);
   const sortedAlbums = sortLegacyEntries(data, params.collection)

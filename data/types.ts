@@ -6,9 +6,10 @@ interface SupabaseDbEntry {
 export interface Album extends SupabaseDbEntry {
   title: string;
   artist_id: number;
-  variant: string;
   purchase_date: string;
   acquired_date: string;
+  release_year: number;
+  variant: string;
   preordered: boolean;
   artwork_url: string;
 }

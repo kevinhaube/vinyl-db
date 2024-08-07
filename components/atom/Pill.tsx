@@ -2,8 +2,8 @@ import { stringToColor } from '@/utils/color/stringToColor';
 import { ensureContrast } from '@/utils/color/ensureContrast';
 
 const Pill = ({ text, className }: { text: string, className?: string }) => {
-  let pillBg = stringToColor(text, "last", 60, 0.8);
-  let pillAccent = stringToColor(text, "last", 70);
+  let pillBg = stringToColor(text, "first", 60, 0.8);
+  let pillAccent = stringToColor(text, "first", 70);
   [pillBg, pillAccent] = ensureContrast(pillBg, pillAccent);
   const dynamicStyles = {
     backgroundColor: pillBg,
