@@ -19,7 +19,9 @@ function sortArtists(args: FullAlbumDetails[]) {
 }
 
 function filterPreorders(args: FullAlbumDetails[]) {
-    return args.filter((arg) => isPreorder(arg) && !isAcquired(arg)).sort((a, b) => sortByTime(new Date(a.purchase_date), new Date(b.purchase_date)))
+    return args
+      .filter((arg) => isPreorder(arg) && !isAcquired(arg))
+      .sort((a, b) => sortByTime(new Date(b.acquired_date), new Date(a.acquired_date)))
 }
 
 export function sortLegacyEntries(args: FullAlbumDetails[], sort: SortType) {
