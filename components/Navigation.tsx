@@ -15,10 +15,12 @@ function Navigation() {
   return (
     <ul className={"mt-6 ml-2 lg:ml-6"}>
       {SORTED_PAGES.map((pn, idx) => (
-        <Link key={idx} href={`/browse/${pn.slug}`}>
-          <li style={filter === pn.slug ? style : {}} className={'leading-8 text-3xl '}>{pn.label}</li>
-        </Link>
-      ))}
+        <li key={idx} style={filter === pn.slug ? style : {}} className={'leading-8 text-3xl '}>
+          <Link href={`/browse/${pn.slug}`}>
+            {pn.label}
+          </Link>
+        </li>
+        ))}
     </ul>
   );
 }
