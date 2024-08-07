@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import Pill from '@/components/atom/Pill';
 import { FullAlbumDetails } from '@/data/types';

@@ -1,7 +1,10 @@
 import { groupAndSortByProperty } from '@/utils/groupAndSortByProperty';
 import { FullAlbumDetails } from '@/data/types';
 
-export const SORTED_PAGES = ["newest", "artist(a-z)", "preorders"] as const
+export const SORTED_PAGES = [
+    {label: "newest", slug: "newest"},
+    {label: "artist(a-z)", slug: "artist-alphabetical"},
+    {label: "orders+preorders", slug: "orders-preorders"}] as const
 export type SortType = typeof SORTED_PAGES[number]
 
 const isAcquired = (arg: FullAlbumDetails) => arg.acquired_date && new Date(arg.acquired_date).getTime() <= Date.now()
@@ -15,20 +18,29 @@ function sortRecentlyAdded(args: FullAlbumDetails[]) {
 }
 
 function sortArtists(args: FullAlbumDetails[]) {
-    return groupAndSortByProperty<FullAlbumDetails>(args, "artist_name", "title").flat();
+    const initialSort = groupAndSortByProperty<FullAlbumDetails>(args, "artist_name", "release_year");
+    const removeArticles = (name: string) => name.replace(/^(The|A|An)\s+/i, '').trim();
+    return initialSort.sort((ag1,  ag2) => {
+        let artistA = removeArticles(ag1[0].artist_name);
+        let artistB = removeArticles(ag2[0].artist_name);
+        return artistA.localeCompare(artistB);
+    }).flat()
 }
 
 function filterPreorders(args: FullAlbumDetails[]) {
-    return args.filter((arg) => isPreorder(arg) && !isAcquired(arg)).sort((a, b) => sortByTime(new Date(a.purchase_date), new Date(b.purchase_date)))
+    const relevant = args.filter((arg) =>
+      (isPreorder(arg) && !isAcquired(arg)) || (!isPreorder(arg) && !isAcquired(arg)
+    ))
+    return relevant.sort((a, b) => sortByTime(new Date(b.acquired_date), new Date(a.acquired_date)))
 }
 
-export function sortLegacyEntries(args: FullAlbumDetails[], sort: SortType) {
+export function sortLegacyEntries(args: FullAlbumDetails[], sort: SortType['slug']) {
     switch (sort) {
         case "newest":
             return sortRecentlyAdded(args)
-        case "artist(a-z)":
+        case "artist-alphabetical":
             return sortArtists(args)
-        case "preorders":
+        case "orders-preorders":
             return filterPreorders(args)
         default:
             // runtime invalid 'sort' type failure

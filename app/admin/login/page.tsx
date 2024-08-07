@@ -1,3 +1,4 @@
+import React from 'react';
 import { signInWithGithub, signOut } from '@/utils/supabase/auth';
 
 export default async function Page() {
