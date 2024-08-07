@@ -1,3 +1,4 @@
+import React from 'react';
 import AlbumCover from '@/components/AlbumCover';
 import { FullAlbumDetails } from '@/data/types';
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import AlbumGrid from '@/components/AlbumGrid';
 import { createSupabaseClient } from '@/utils/supabase/createSupabaseClient';
 import { SortType, sortLegacyEntries } from '@/data/filters';

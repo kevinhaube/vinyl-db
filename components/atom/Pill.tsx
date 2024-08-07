@@ -1,3 +1,4 @@
+import React from 'react';
 import { stringToColor } from '@/utils/color/stringToColor';
 import { ensureContrast } from '@/utils/color/ensureContrast';
 

@@ -1,6 +1,6 @@
 "use client"
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 import { SORTED_PAGES } from '@/data/filters';
 import { usePathname } from 'next/navigation';
 import { stringToColor } from '@/utils/color/stringToColor';
